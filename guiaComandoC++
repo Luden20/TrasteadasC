@@ -1,0 +1,15 @@
+nano programa.cpp
+
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout << "Hola, C++ en Kali Linux" << endl;
+    return 0;
+}
+
+
+g++ programa.cpp -o programa
+
+
+./programa
