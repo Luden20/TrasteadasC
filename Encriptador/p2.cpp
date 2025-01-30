@@ -1,10 +1,30 @@
+#include<iostream>
+#include<sstream>
 #include <stdio.h>
 #include <string.h>
 #include<stdlib.h>
 #include<cstdlib>
+#include<sqlite3.h>
+static int callback(void *NotUsed, int argc, char **argv, char **azColName) {
+   int i;
+   for(i = 0; i<argc; i++) {
+      printf("%s = %s\n", azColName[i], argv[i] ? argv[i] : "NULL");
+   }
+   printf("\n");
+   return 0;
+}
+
+
 int main()
 {
 	system("clear");
+	sqlite3 *db;
+	char  *zErrMsg=0;
+	int rc;
+	std::ostringstream sql;
+
+	rc=sqlite3_open("pass.db",&db);
+
 	char *dato;
 	dato=(char *)calloc(100,sizeof(char));
 	char *cifrado;
@@ -30,5 +50,8 @@ int main()
 	free(dato);
 	free(cifrado);
 	free(descifrado);
+	sql<<"INSERT INTO pass(user,password,descripcion) VALUES('"<<cifrado<<"'"<<
+		cifrado<<"'"<<cifrado<<"');";
+	rc=sqlite3_exec(db,sql.str().c_str(),callback,0,&zErrMsg);
 	return 0;
 }
