@@ -1,0 +1,26 @@
+# Crear un repositorio en GitHub (asumiendo que ya estás autenticado)
+gh repo create nombre-del-repo --public
+
+# Entrar al directorio del nuevo repositorio
+cd nombre-del-repo
+
+# Inicializar un repositorio Git local
+git init
+
+# Conectar el repositorio local a GitHub
+git remote add origin https://github.com/TuUsuario/nombre-del-repo.git
+
+# Agregar todos los archivos al área de preparación
+git add .
+
+# Crear un commit con los cambios
+git commit -m "Primer commit"
+
+# Asegurar que estamos en la rama "main"
+git branch -M main
+
+# Subir los cambios al repositorio remoto
+git push -u origin main
+```
+
+
